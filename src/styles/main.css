@@ -1,0 +1,337 @@
+:root {
+  color-scheme: light dark;
+
+  --fondo: light-dark(#eef1f4, #12161f);
+  --superficie: light-dark(#ffffff, #1a2030);
+  --campo: light-dark(#f7f9fb, #11151f);
+  --texto: light-dark(#1b2230, #e8ecf3);
+  --texto-suave: light-dark(#566074, #9aa5ba);
+  --borde: light-dark(#cdd5e0, #333c52);
+
+  --azul: #0f4c9a;
+  --azul-hover: #0b3d7e;
+  --azul-claro: light-dark(#0f4c9a, #6ca8ff);
+  --amarillo: #f5c400;
+  --asfalto: #1b2230;
+  --sube: light-dark(#b3261e, #ff8f87);
+  --baja: light-dark(#0e7a55, #5fd3a0);
+
+  --fuente-titulo: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --fuente-texto: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radio-grande: 0.75rem;
+  --radio-pequeno: 0.375rem;
+  --aro-foco: color-mix(in oklab, var(--azul-claro) 45%, transparent);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--fuente-texto);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+.pagina {
+  width: min(100% - 2rem, 60rem);
+  margin-inline: auto;
+  padding-block: clamp(1.5rem, 6vw, 4rem);
+}
+
+.cabecera {
+  margin-block-end: clamp(1.5rem, 4vw, 2.5rem);
+
+  h1 {
+    max-width: 14ch;
+    margin: 0;
+    font-family: var(--fuente-titulo);
+    font-size: clamp(2.6rem, 8vw, 4.25rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    max-width: 38ch;
+    margin: 0.75rem 0 0;
+    color: var(--texto-suave);
+  }
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.columna {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  min-width: 0;
+}
+
+.formulario {
+  display: grid;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-grande);
+}
+
+.campo {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.etiqueta {
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.entrada {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  color: var(--texto);
+  background: var(--campo);
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+
+  &:focus-visible {
+    border-color: var(--azul-claro);
+    outline: 3px solid var(--aro-foco);
+    outline-offset: 1px;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: var(--sube);
+  }
+}
+
+.error {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--sube);
+
+  &:empty {
+    display: none;
+  }
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio-pequeno);
+  cursor: pointer;
+
+  &:has(input:checked) {
+    background: color-mix(in oklab, var(--azul-claro) 9%, transparent);
+    border-color: var(--azul-claro);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 3px solid var(--aro-foco);
+    outline-offset: 1px;
+  }
+
+  input {
+    flex: none;
+    inline-size: 1.2rem;
+    block-size: 1.2rem;
+    margin: 0;
+    accent-color: var(--azul);
+  }
+}
+
+.boton {
+  padding: 0.85rem 1.25rem;
+  font: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--azul);
+  border: 0;
+  border-radius: var(--radio-pequeno);
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background: var(--azul-hover);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--azul-claro);
+    outline-offset: 3px;
+  }
+}
+
+.ticket {
+  overflow: hidden;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-grande);
+  box-shadow: 0 0.75rem 2rem -1rem color-mix(in oklab, #000000 45%, transparent);
+}
+
+.ticket__cabecera {
+  padding: 1.25rem clamp(1.25rem, 3vw, 2rem) 1rem;
+  color: var(--asfalto);
+  background: var(--amarillo);
+}
+
+.ticket__titulo {
+  margin: 0;
+  font-weight: 600;
+}
+
+.ticket__precio {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: clamp(3.25rem, 11vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ticket__cuerpo {
+  padding: 1.25rem clamp(1.25rem, 3vw, 2rem) 1.5rem;
+  border-top: 2px dashed color-mix(in oklab, var(--texto) 35%, transparent);
+}
+
+.ticket__nota {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+.desglose {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.desglose__linea {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.55rem;
+
+  & + & {
+    border-top: 1px solid var(--borde);
+  }
+}
+
+.desglose__valor {
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.desglose__valor--sube {
+  color: var(--sube);
+}
+
+.desglose__valor--baja {
+  color: var(--baja);
+}
+
+.historial {
+  min-width: 0;
+}
+
+.historial__cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    font-family: var(--fuente-titulo);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+}
+
+.boton-texto {
+  padding: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--azul-claro);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--aro-foco);
+    outline-offset: 2px;
+  }
+}
+
+.historial__lista {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.historial__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 1rem;
+  padding-block: 0.7rem;
+  border-top: 1px solid var(--borde);
+}
+
+.historial__precio {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.historial__fecha {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton {
+    transition: none;
+  }
+}

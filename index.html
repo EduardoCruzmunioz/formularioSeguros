@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Calcula el precio de tu póliza de seguro de coche según tu edad, tu vehículo y las personas a tu cargo."
+    />
+    <title>Calculadora de póliza de coche</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="pagina">
+      <header class="cabecera">
+        <h1>Calcula tu seguro de coche</h1>
+        <p>Rellena cuatro datos y mira cómo se forma el precio.</p>
+      </header>
+
+      <div class="rejilla">
+        <form id="formulario" class="formulario" novalidate>
+          <div class="campo">
+            <label class="etiqueta" for="edad">Edad del conductor</label>
+            <input
+              class="entrada"
+              id="edad"
+              name="edad"
+              type="number"
+              inputmode="numeric"
+              step="1"
+              autocomplete="off"
+              aria-describedby="error-edad"
+            />
+            <p id="error-edad" class="error" role="alert"></p>
+          </div>
+
+          <div class="campo">
+            <label class="etiqueta" for="vehiculo">Tipo de vehículo</label>
+            <select class="entrada" id="vehiculo" name="vehiculo"></select>
+          </div>
+
+          <fieldset class="campo">
+            <legend class="etiqueta">Personas a tu cargo</legend>
+            <label class="opcion">
+              <input id="hijos" name="hijos" type="checkbox" />
+              <span>Tengo hijos a cargo</span>
+            </label>
+            <label class="opcion">
+              <input id="padres" name="padres" type="checkbox" />
+              <span>Tengo padres a cargo</span>
+            </label>
+          </fieldset>
+
+          <button class="boton" type="submit">Calcular póliza</button>
+        </form>
+
+        <div class="columna">
+          <section id="resultado" class="ticket" aria-label="Resultado" aria-live="polite">
+            <div class="ticket__cabecera">
+              <p class="ticket__titulo">Tu póliza de coche</p>
+              <p id="precio-final" class="ticket__precio">—</p>
+            </div>
+            <div class="ticket__cuerpo">
+              <p id="nota-resultado" class="ticket__nota">
+                Rellena los datos y pulsa Calcular póliza.
+              </p>
+              <ul id="desglose" class="desglose"></ul>
+            </div>
+          </section>
+
+          <section id="historial" class="historial" hidden>
+            <div class="historial__cabecera">
+              <h2>Últimos cálculos</h2>
+              <button id="borrar-historial" class="boton-texto" type="button">
+                Borrar historial
+              </button>
+            </div>
+            <ul id="lista-historial" class="historial__lista"></ul>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
